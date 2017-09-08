@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+    <meta name="renderer" content="webkit">
+    <!--360渲染模式-->
+    <meta name="format-detection" content="telephone=notelphone=no, email=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- 设置苹果工具栏颜色:默认值为 default，可以定为 black和 black-translucent-->
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!-- 不让百度转码 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- 微软的老式浏览器 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- uc强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="browsermode" content="application">
+    <!-- UC应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- QQ应用模式 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- windows phone 点击无高光 -->
+    <link rel="shortcut icon" href="http://ou2r9nim8.bkt.clouddn.com/bitbug_favicon%20%281%29.ico" type="image/x-icon">    
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../lib/md5.js"></script>
+    <script src="../lib/sha1.js"></script>
+    <title>注册</title>
+</head>
+
+<body>
+    <div class="register_contain">
+
+        <div class="head">
+            <span class="head_title">注册</span>
+            <a href="../index.html" class="close">
+                <img src="../img/close.png" alt="">
+            </a>
+        </div>
+
+        <form action="../logsys/register.php" id="register" method="post">
+
+            <div class="input-wrap registerI">
+                <span class="input-title">学号:</span>
+                <input type="text" name="schoolnum" placeholder="学号首字母大写" id="username" class="input-control" autocomplete="off" data-rule='pattern:^[B|Q|H]{1}1[4|5|6|7]\d{6}$%minlength:9%maxlength:9'>
+                <div id="schoolnum-input-error" class="input-error registerErr">学号格式有误</div>
+            </div>
+
+            <div class="input-wrap registerI">
+                <span class="input-title">密码:</span>
+                <input type="password" name="pw" placeholder="请输入6-26位密码" id="password" class="input-control" data-rule='minlength:6%maxlength:26'>
+                <div id="pw-input-error" class="input-error registerErr">请输入6-26位密码</div>
+            </div>
+
+            <div class="input-wrap registerI">
+                <span class="input-title">确认:</span>
+                <input type="password" name="pw_2" placeholder="请重复输入密码" id="password_again" class="input-control" data-rule='minlength:6%maxlength:26%equal:true'>
+                <div id="pw_2-input-error" class="input-error registerErr">请重复输入密码</div>
+            </div>
+
+            <div class="input-wrap registerI">
+                <span class="input-title">验证:</span>
+                <input type="text" name="checkinput" id="checkinput" autocomplete="off" placeholder="验证码" data-rule='check:true'>
+                <img id="checkcode" src="img.php" alt="验证码图片" onclick="this.src=this.src+'?'+new Date().getTime();">
+                <div id="checkinput-input-error" class="input-error registerErr">输入的验证码不正确</div>
+            </div>
+
+            <div class="submit-wrap">
+                <button type="submit" name="register_submit" id="register_submit" class="submit-btn">注册</button>
+            </div>
+        </form>
+        <div class="footer">@通院科协</div>
+
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/checkCode.js"></script>
+        <script src="../js/validator.js"></script>
+        <script src="../js/input.js"></script>
+        <script src="../js/main.js"></script>
+        <!-- <script>
+            $(function () {
+                'use strict';
+
+                var checkCode = new CheckCode();
+                checkCode.createCode();
+                $('#checkcode').on('click',function(){
+                    checkCode.click();
+                })
+            })
+        </script> -->
+    </div>
+</body>
+
+</html>

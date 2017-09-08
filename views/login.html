@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+    <meta name="renderer" content="webkit">
+    <!--360渲染模式-->
+    <meta name="format-detection" content="telephone=notelphone=no, email=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- 设置苹果工具栏颜色:默认值为 default，可以定为 black和 black-translucent-->
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!-- 不让百度转码 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- 微软的老式浏览器 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- uc强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="browsermode" content="application">
+    <!-- UC应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- QQ应用模式 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- windows phone 点击无高光 -->
+    <link rel="shortcut icon" href="http://ou2r9nim8.bkt.clouddn.com/bitbug_favicon%20%281%29.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/normalize/7.0.0/normalize.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../lib/sha1.js"></script>
+    <title>登录</title>
+</head>
+
+<body>
+    <div class="login_contain">
+
+        <div class="head">
+            <span class="head_title">登录</span>
+            <a href="../index.html" class="close">
+                <img src="../img/close.png" alt="">
+            </a>
+        </div>
+
+        <form action="../logsys/login.php" id="log" method="post">
+            <div class="input-wrap">
+                <span class="input-title">学号:</span>
+                <input type="text" 
+                name="schoolnum" 
+                placeholder="学号首字母大写" 
+                id="username" 
+                class="input-control"
+                autocomplete="off" 
+                data-rule='maxlength:9%minlength:9%pattern:[B|Q|H]{1}1[4|5|6|7]\d{6}'>
+                <div id="schoolnum-input-error" class="input-error">学号格式有误</div>
+            </div>
+
+            <div class="input-wrap">
+                <span class="input-title">密码:</span>
+                <input type="password" 
+                name="pw" 
+                placeholder="请输入6-26位密码" 
+                id="password" 
+                class="input-control"
+                data-rule='minlength:6%maxlength:26'>
+                <div id="pw-input-error" class="input-error">请输入6-26位密码</div>
+            </div>
+
+            <div class="submit-wrap"><button type="submit" name="log_submit" id="log_submit" class="submit-btn">登录</button></div>
+        </form>
+        <div class="footer">@通院科协</div>
+    </div>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/validator.js"></script>
+    <script src="../js/input.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

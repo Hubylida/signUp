@@ -1,0 +1,361 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: #eee;
+    font-size: 20px;
+}
+
+body {
+    background: #232323;
+    padding: 20px 15px;
+}
+
+.submit-btn,.input-control,#submit,.mian select option,#select_1,
+#select_2,.main label input,#reg_btn,
+#log_btn,#checkinput{
+    color: #eee;
+}
+.submit-btn,.input-control,#submit,#select_1,
+#select_2,.main label input,#reg_btn,
+#log_btn,#checkinput{
+    background: transparent;
+}
+.contain,.register_contain,.login_contain,.main,.tip_main{
+    width: 100%;
+    height: 26rem;
+    background: #313034;
+    background-attachment: fixed;
+    box-shadow: inset 0  1px 4px #555;
+    border-radius: 4px;
+    padding: 1px;
+    position: relative;
+}
+
+#logo {
+    width: 14.4rem;
+    height: 10.45rem;
+    display: block;
+    margin: 1rem auto;
+}
+
+#logo img {
+    width: 14.4rem;
+    height: 10.45rem;
+}
+
+#hoster {
+    width: 100%;
+    line-height: 2em;
+    margin: 0.5rem auto;
+    text-align: center;
+    font-size: 22px;
+}
+
+.btns {
+    width: 13.5rem;
+    position: absolute;
+    left: 50%;
+    bottom: 4rem;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+#reg_btn,
+#log_btn {
+    display: inline-block;
+    width: 6.5rem;
+    line-height: 40px;
+    border: 2px solid #eee;
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+/* signUp页面 */
+#signUp{
+    width: 14.4rem;
+    margin: 1.5rem auto;
+}
+
+#main_title {
+    display: inline-block;
+    line-height: 32px;
+    vertical-align: top;
+    margin-left: 2rem;
+}
+
+#back {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.main label {
+    display: inline-block;
+    width: 100%;
+    height: 1.5rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.main label input {
+    border: 2px solid #eee;
+    width: 11rem;
+    height: 1.5rem;
+    margin-left: 0.4rem;
+    padding-left: 5px;
+}
+
+#select_1,
+#select_2 {
+    width: 10rem;
+    height: 1.5rem;
+    border: 2px solid #eee;
+}
+
+.main select option {
+    background: #333;
+}
+
+#submit_div {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+#submit {
+    width: 13.5rem;
+    height: 1.8rem;
+    border: 2px solid #eee;
+}
+
+.find_us {
+    margin-top: 1rem;
+    text-align: center;
+}
+.footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 0;
+}
+/* login ,register*/
+#register{
+    width: 13.5rem;
+    /* text-align: center; */
+    margin: 1rem auto;
+}
+#checkinput{
+    width: 5rem;
+    height: 1.6rem;
+    border: 2px solid #eee;
+    padding: 4px 10px;
+    letter-spacing: 1px;   
+}
+#checkcode{
+    display: inline-block;
+    width: 5rem;
+    height: 1.6rem;
+    float: right;
+    margin-right: 4px;
+    color: #e38383;
+}
+#log{
+    width: 14.4rem;
+    margin: 3.5rem auto;
+    text-align: center;
+}
+.head{
+    width: 100%;
+    height: 52px;
+    padding: 0.5rem 0.5rem;
+    border-bottom: 2px solid #eee;
+}
+.head_title{
+    display: inline-block; 
+    line-height: 32px;
+}
+
+.close{
+    float: right;
+    cursor: pointer;
+    height: 1.6rem;
+}
+.close:hover{
+    background: rgba(255, 255, 255, 0.3)
+}
+.input-wrap{
+    display: inline-block;
+    width: 100%;
+    height: 3.5rem;
+    margin: 1rem 0;
+    font-size: 18px;
+}
+.input-control{
+    width: 11rem;
+    height: 1.6rem;
+    border: 2px solid #eee;
+    padding-left: 5px;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.input-title{
+    display: inline--block;
+}
+.input-error{
+    font-size: 16px;
+    display: none;
+    color: #e38383;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.registerErr{
+    padding: 0.5rem 0;
+}
+
+.submit-wrap{
+    width: 100%;
+    height: 1.7rem;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.registerI{
+    margin: 0.3rem 0;
+    text-align: left;
+}
+.submit-btn{
+    width: 13.25rem;
+    height: 1.7rem;
+    border: 2px solid #eee;
+    font-size: 18px;
+}
+
+/* tip */
+.tip_find{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0rem;
+    margin: 0 auto;
+    font-size: 18px;
+}
+#status{
+    padding: 1.5rem 1rem;
+}
+.words{
+    margin: 10px;
+    text-align: center;
+}
+#tip_head{
+    width: 100%;
+    height: 42px;
+    text-align: right;
+    padding: 5px;
+}
+#tip_head a{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+#tip_head a:hover{
+    background: #444;
+}
+#tip_btn{
+    width: 100%;
+    height: 1.7rem;
+    position: absolute;
+    bottom: 7rem;
+    text-align: center;
+}
+#tip_btn a{
+    display: inline-block;
+    width: 13rem;
+    height: 1.7rem;
+    border: 2px solid #eee;
+    text-decoration: none;
+    background: transparent;
+    color: #eee;
+}
+/* 表单验证 */
+#signUp input:focus:invalid,
+.input-control:focus:invalid
+ {
+    background: #444;
+}
+
+#signUp input:focus:valid,
+.input-control:focus:valid
+{
+    background: #444;
+}
+
+@media screen and (max-width:320px){
+    body{
+        padding: 0;
+    }
+    .contain,.register_contain,.login_contain,.main,.tip_main{
+        max-width: 14.8rem;
+        margin: 20px auto;
+    }
+    #reg_btn,
+    #log_btn {
+        width: 6rem;
+        line-height: 35px;
+    }
+    .input-control{
+        width: 10rem;
+    }
+    #register{
+        width: 12.5rem;
+    }
+    #checkinput, #checkcode{
+        width: 4rem;
+    }
+    .submit-btn{
+        width: 12.25rem;
+    }
+    .main label input{
+        width: 10rem;
+    }
+    #select_1, #select_2{
+        width: 9rem;
+    }
+    #submit{
+        width: 12.5rem;
+    }
+    #tip_btn a{
+        width: 12rem;
+    }
+    .tip_find{
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 768px){
+    .contain,.register_contain,.login_contain,.main,.tip_main{
+        width: 15rem;
+        height: 26rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background: #333;
+        background-attachment: fixed;
+        box-shadow: inset 0 0 2px 1px #444;
+    }
+
+    body{
+        background: rgba(0, 0, 0, 0.3);
+    }
+}
