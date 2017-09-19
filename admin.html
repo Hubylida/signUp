@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/normalize/7.0.0/normalize.css">
+    <title>在线报名后台</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .contain {
+            width: 1430px;
+            margin: 0 auto;
+        }
+
+        table {
+            max-width: 1430px;
+            border: 1px solid #000;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid #000;
+            width: 130px;
+            height: 35px;
+            padding: 0;
+            text-align: center;
+            table-layout: fixed;
+        }
+
+        input[type='text'] {
+            width: 130px;
+            height: 100%;
+            text-align: center;
+            border: 0;
+            outline: none;
+        }
+
+        .change-item,
+        .delete-item {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: 0;
+            outline: none;
+            cursor: pointer;
+            color: #e33;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <h1>2017CAST在线报名系统管理后台</h1>
+        <table id="table">
+            <tr>
+                <td>学号</td>
+                <td>姓名</td>
+                <td>手机号</td>
+                <td>部门一</td>
+                <td>部门二</td>
+                <td>计算机部</td>
+                <td>电子部</td>
+                <td>办公室</td>
+                <td>赛事部</td>
+                <td>操作</td>
+                <td>操作</td>
+            </tr>
+            <tr>
+                <td><input type="text" value="B16010423"></td>
+                <td><input type="text" value="依云"></td>
+                <td><input type="text" value="13414508316"></td>
+                <td><input type="text" value="计算机部"></td>
+                <td><input type="text" value="办公室"></td>
+                <td><input type="text" value="√"></td>
+                <td><input type="text" value="√"></td>
+                <td><input type="text" value="√"></td>
+                <td><input type="text" value="√"></td>
+                <td><input type="button" value="修改" class="change-item"></td>
+                <td><input type="button" value="删除" class="delete-item"></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="B16010101"></td>
+                <td><input type="text" value="春草"></td>
+                <td><input type="text" value="15251857933"></td>
+                <td><input type="text" value="电子部"></td>
+                <td><input type="text" value="办公室"></td>
+                <td><input type="text" value="√"></td>
+                <td><input type="text" value="√"></td>
+                <td><input type="text" value="√"></td>
+                <td><input type="text" value="√"></td>
+                <td><input type="button" value="修改" class="change-item"></td>
+                <td><input type="button" value="删除" class="delete-item"></td>
+            </tr>
+            <tr>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="button" value="修改" class="change-item"></td>
+                <td><input type="button" value="删除" class="delete-item"></td>
+            </tr>
+            <tr>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="text" value=""></td>
+                <td><input type="button" value="修改" class="change-item"></td>
+                <td><input type="button" value="删除" class="delete-item"></td>
+            </tr>
+
+        </table>
+        <input type="button" value="添加" id="add-item">
+        <button id="button" type="button" onclick="requestdata">请求数据</button>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            readOnly();
+            delete_item();
+            change_item();
+
+            function readOnly() {
+                var text_list = $(':text');
+                for (let i = 0, l = text_list.length; i < l; i++) {
+                    $(text_list[i]).attr("readOnly", true);
+                }
+            }
+
+            function delete_item() {
+                var $item_list_delete = $('.delete-item');
+                $item_list_delete.on('click', function () {
+                    $(this).parent().parent().remove();
+                })
+            }
+
+            function change_item() {
+                var item_list_change = $('.change-item');
+                for (let i = 0, l = item_list_change.length; i < l; i++) {
+                    $(item_list_change[i]).on('click', function () {
+                        console.log($(item_list_change));
+                        if ($(this).val() === "修改") {
+                            $(this).parent().parent().find(':text').attr("readOnly", false);
+                            $(this).val("保存");
+                            $(this).parent().parent().find('input').css("background", "#eee");
+                        } else if ($(this).val() === "保存") {
+                            $(this).parent().parent().find(':text').attr("readOnly", true);
+                            $(this).val("修改");
+                            $(this).parent().parent().find('input').css("background", "#fff");
+                        }
+                    })
+                }
+
+            }
+
+
+            $('#add-item').on('click', function () {
+                $('#table').append('<tr></tr>');
+                for (let j = 0; j < 6; j++) {
+                    $('#table tr:last').append("<td><input type='text' vlaue=''></td>");
+                }
+                $('#table tr:last').append(
+                    "<td><input type='button' value='修改'class='change-item'></td>");
+                $('#table tr:last').append(
+                    "<td><input type='button' value='删除' class='delete-item'></td>");
+                $('.delete-item').off('click');
+                $('.change-item').off('click');
+                readOnly();
+                delete_item();
+                change_item();
+            });
+        })
+    </script>
+
+</body>
+
+</html>
