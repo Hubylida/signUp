@@ -40,6 +40,14 @@
             outline: none;
         }
 
+        select {
+            border: 0;
+            outline: 0;
+            background: transparent;
+            width: 100%;
+            height: 100%;
+        }
+
         .change-item,
         .delete-item {
             width: 100%;
@@ -71,15 +79,35 @@
                 <td>操作</td>
             </tr>
             <tr>
-                <td><input type="text" value="B16010423"></td>
-                <td><input type="text" value="依云"></td>
-                <td><input type="text" value="13414508316"></td>
-                <td><input type="text" value="计算机部"></td>
-                <td><input type="text" value="办公室"></td>
-                <td><input type="text" value="√"></td>
-                <td><input type="text" value="√"></td>
-                <td><input type="text" value="√"></td>
-                <td><input type="text" value="√"></td>
+                <td><input type="text" value="B16010423" name="schoolnum"></td>
+                <td><input type="text" value="依云" name="name"></td>
+                <td><input type="text" value="13414508316" name="phonenum"></td>
+                <td><input type="text" value="计算机部" name="branch1"></td>
+                <td><input type="text" value="办公室" name="branch2"></td>
+                <td>
+                    <select name="计算机部" class="select-item"> 
+                            <option value="√">√</option>
+                            <option value="x">x</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="电子部" class="select-item">
+                            <option value="√">√</option>
+                            <option value="x">x</option>
+                        </select>
+                </td>
+                <td>
+                    <select name="办公室" class="select-item">
+                            <option value="√">√</option>
+                            <option value="x">x</option>
+                        </select>
+                </td>
+                <td>
+                    <select name="赛事部" class="select-item">
+                            <option value="√">√</option>
+                            <option value="x">x</option>
+                        </select>
+                </td>
                 <td><input type="button" value="修改" class="change-item"></td>
                 <td><input type="button" value="删除" class="delete-item"></td>
             </tr>
@@ -89,56 +117,48 @@
                 <td><input type="text" value="15251857933"></td>
                 <td><input type="text" value="电子部"></td>
                 <td><input type="text" value="办公室"></td>
-                <td><input type="text" value="√"></td>
-                <td><input type="text" value="√"></td>
-                <td><input type="text" value="√"></td>
-                <td><input type="text" value="√"></td>
-                <td><input type="button" value="修改" class="change-item"></td>
-                <td><input type="button" value="删除" class="delete-item"></td>
-            </tr>
-            <tr>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="button" value="修改" class="change-item"></td>
-                <td><input type="button" value="删除" class="delete-item"></td>
-            </tr>
-            <tr>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
-                <td><input type="text" value=""></td>
+                <td>
+                    <select name="计算机部" class="select-item"> 
+                        <option value="√">√</option>
+                        <option value="x">x</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="电子部" class="select-item">
+                        <option value="√">√</option>
+                        <option value="x">x</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="办公室" class="select-item">
+                        <option value="√">√</option>
+                        <option value="x">x</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="赛事部" class="select-item">
+                        <option value="√">√</option>
+                        <option value="x">x</option>
+                    </select>
+                </td>
                 <td><input type="button" value="修改" class="change-item"></td>
                 <td><input type="button" value="删除" class="delete-item"></td>
             </tr>
 
         </table>
-        <input type="button" value="添加" id="add-item">
-        <button id="button" type="button" onclick="requestdata">请求数据</button>
+        <!-- <input type="button" value="添加" id="add-item"> -->
+        <button type="button" id="getData">请求数据</button>
     </div>
 
-    <script src="js/jquery.min.js"></script>
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            readOnly();
-            delete_item();
-            change_item();
-
             function readOnly() {
                 var text_list = $(':text');
                 for (let i = 0, l = text_list.length; i < l; i++) {
                     $(text_list[i]).attr("readOnly", true);
+                    $('.select-item').attr('disabled', true);
                 }
             }
 
@@ -146,6 +166,7 @@
                 var $item_list_delete = $('.delete-item');
                 $item_list_delete.on('click', function () {
                     $(this).parent().parent().remove();
+                    delete_this($(this));
                 })
             }
 
@@ -153,37 +174,106 @@
                 var item_list_change = $('.change-item');
                 for (let i = 0, l = item_list_change.length; i < l; i++) {
                     $(item_list_change[i]).on('click', function () {
-                        console.log($(item_list_change));
                         if ($(this).val() === "修改") {
                             $(this).parent().parent().find(':text').attr("readOnly", false);
+                            $(this).parent().parent().find('.select-item').attr('disabled', false);
                             $(this).val("保存");
                             $(this).parent().parent().find('input').css("background", "#eee");
+                            $(this).parent().parent().find('.select-item').css("background", "#eee");
                         } else if ($(this).val() === "保存") {
                             $(this).parent().parent().find(':text').attr("readOnly", true);
+                            $(this).parent().parent().find('.select-item').attr('disabled', true);
                             $(this).val("修改");
                             $(this).parent().parent().find('input').css("background", "#fff");
+                            $(this).parent().parent().find('.select-item').css("background", "#fff");
+                            save_item($(this));
                         }
                     })
                 }
-
             }
+            readOnly();
+            delete_item();
+            change_item();
+            // $('#add-item').on('click', function () {
+            //     $('#table').append('<tr></tr>');
+            //     for (let j = 0; j < 9; j++) {
+            //         $('#table tr:last').append("<td><input type='text' vlaue=''></td>");
+            //     }
+            //     $('#table tr:last').append(
+            //         "<td><input type='button' value='修改'class='change-item'></td>");
+            //     $('#table tr:last').append(
+            //         "<td><input type='button' value='删除' class='delete-item'></td>");
+            //     $('.delete-item').off('click');
+            //     $('.change-item').off('click');
+            //     readOnly();
+            //     delete_item();
+            //     change_item();
+            // });
 
-
-            $('#add-item').on('click', function () {
-                $('#table').append('<tr></tr>');
-                for (let j = 0; j < 6; j++) {
-                    $('#table tr:last').append("<td><input type='text' vlaue=''></td>");
-                }
-                $('#table tr:last').append(
-                    "<td><input type='button' value='修改'class='change-item'></td>");
-                $('#table tr:last').append(
-                    "<td><input type='button' value='删除' class='delete-item'></td>");
-                $('.delete-item').off('click');
-                $('.change-item').off('click');
+            var select_array = ["计算机部", "电子部", "办公室", "赛事部"];
+            $('#getData').click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "admin.php?action=datalist",
+                    dataType: "json",
+                    success: function (data) {
+                        //i表示在data中的索引位置，n表示包含的信息的对象 
+                        $.each(data, function (i, n) {
+                            var value_array = new Array();
+                            for (var i in n) {
+                                value_array.push(n[i]);
+                            }
+                            var tr = "<tr>";
+                            for (let j = 0; j < 5; j++) {
+                                tr += "<td><input type='text' value='" +
+                                    value_array[j] +
+                                    "'></td>";
+                            }
+                            for (let j = 5; j < 9; j++) {
+                                tr += "<td><select name='" + select_array[j] +
+                                    "' class='select-item'><option value='√'>" +
+                                    value_array[j] +
+                                    "</option><option value='x'>x</option></select></td>"
+                            }
+                            tr +=
+                                "<td><input type='button' value='修改'' class='change-item'></td><td><input type='button' value='删除' class='delete-item'></td></tr>";
+                            $('#table').append(tr);
+                        });
+                        readOnly();
+                        delete_item();
+                        change_item();
+                    }
+                });
                 readOnly();
                 delete_item();
                 change_item();
+                return false;
             });
+
+            function save_item(a) {
+                var currentRow = a.parent().parent();
+                var input_fields = currentRow.find("input"),
+                    select_fields = currentRow.find("select");
+                var post_fields = {};
+                for (let i = 0, j = input_fields.length - 2; i < j; i++) {
+                    post_fields['col_' + i] = input_fields[i].value;
+                }
+                for (let i = 5, j = select_fields.length + 5; i < j; i++) {
+                    post_fields['col_' + i] = select_fields[i - 5].value;
+                }
+                post_fields['id'] = input_fields[0].value;
+                console.log(post_fields);
+                $.post('admin.php?action=save', post_fields, function (res) {
+
+                });
+            }
+            function delete_this(a){
+                var currentRow = a.parent().parent();
+                var data = currentRow.find("input")[0].value;
+                var post_fields = {};
+                post_fields['id'] = data;
+                $.post('admin.php?action=delete',post_fields,function(res){});
+            }
         })
     </script>
 
