@@ -212,9 +212,10 @@
 
             var select_array = ["计算机部", "电子部", "办公室", "赛事部"];
             $('#getData').click(function () {
+                $.get('admin.php?action=data_list',function(res){});
                 $.ajax({
                     type: "GET",
-                    url: "admin.php?action=data_list",
+                    url: "user.json",
                     dataType: "json",
                     success: function (data) {
                         //i表示在data中的索引位置，n表示包含的信息的对象 
