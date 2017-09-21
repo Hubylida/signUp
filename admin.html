@@ -78,72 +78,6 @@
                 <td>操作</td>
                 <td>操作</td>
             </tr>
-            <tr>
-                <td><input type="text" value="B16010423" name="schoolnum"></td>
-                <td><input type="text" value="依云" name="name"></td>
-                <td><input type="text" value="13414508316" name="phonenum"></td>
-                <td><input type="text" value="计算机部" name="branch1"></td>
-                <td><input type="text" value="办公室" name="branch2"></td>
-                <td>
-                    <select name="计算机部" class="select-item"> 
-                            <option value="√">√</option>
-                            <option value="x">x</option>
-                    </select>
-                </td>
-                <td>
-                    <select name="电子部" class="select-item">
-                            <option value="√">√</option>
-                            <option value="x">x</option>
-                        </select>
-                </td>
-                <td>
-                    <select name="办公室" class="select-item">
-                            <option value="√">√</option>
-                            <option value="x">x</option>
-                        </select>
-                </td>
-                <td>
-                    <select name="赛事部" class="select-item">
-                            <option value="√">√</option>
-                            <option value="x">x</option>
-                        </select>
-                </td>
-                <td><input type="button" value="修改" class="change-item"></td>
-                <td><input type="button" value="删除" class="delete-item"></td>
-            </tr>
-            <tr>
-                <td><input type="text" value="B16010101"></td>
-                <td><input type="text" value="春草"></td>
-                <td><input type="text" value="15251857933"></td>
-                <td><input type="text" value="电子部"></td>
-                <td><input type="text" value="办公室"></td>
-                <td>
-                    <select name="计算机部" class="select-item"> 
-                        <option value="√">√</option>
-                        <option value="x">x</option>
-                    </select>
-                </td>
-                <td>
-                    <select name="电子部" class="select-item">
-                        <option value="√">√</option>
-                        <option value="x">x</option>
-                    </select>
-                </td>
-                <td>
-                    <select name="办公室" class="select-item">
-                        <option value="√">√</option>
-                        <option value="x">x</option>
-                    </select>
-                </td>
-                <td>
-                    <select name="赛事部" class="select-item">
-                        <option value="√">√</option>
-                        <option value="x">x</option>
-                    </select>
-                </td>
-                <td><input type="button" value="修改" class="change-item"></td>
-                <td><input type="button" value="删除" class="delete-item"></td>
-            </tr>
 
         </table>
         <!-- <input type="button" value="添加" id="add-item"> -->
@@ -209,47 +143,53 @@
             //     delete_item();
             //     change_item();
             // });
-
             var select_array = ["计算机部", "电子部", "办公室", "赛事部"];
-            $('#getData').click(function () {
-                $.get('admin.php?action=data_list',function(res){});
-                $.ajax({
-                    type: "GET",
-                    url: "user.json",
-                    dataType: "json",
-                    success: function (data) {
-                        //i表示在data中的索引位置，n表示包含的信息的对象 
-                        $.each(data, function (i, n) {
-                            var value_array = new Array();
-                            for (var i in n) {
-                                value_array.push(n[i]);
+            $('#getData').on('click', function () {
+                console.log("ok");
+                $.get('admin.php?action=data_list', function (res) {
+                    if (res == "OK") {
+                        $.ajax({
+                            type: "GET",
+                            url: "user.json",
+                            dataType: "json",
+                            success: function (data) {
+                                //i表示在data中的索引位置，n表示包含的信息的对象 
+                                $.each(data, function (i, n) {
+                                    var value_array = new Array();
+                                    for (var i in n) {
+                                        value_array.push(n[i]);
+                                    }
+                                    var tr = "<tr>";
+                                    for (let j = 0; j < 5; j++) {
+                                        tr +=
+                                            "<td><input type='text' value='" +
+                                            value_array[j] +
+                                            "'></td>";
+                                    }
+                                    for (let j = 5; j < 9; j++) {
+                                        tr += "<td><select name='" +
+                                            select_array[j] +
+                                            "' class='select-item'><option value='√'>√</option><option value='x'>x</option></select></td>"
+                                        $("select[name='"+select_array[j]+"']").find("option[value='"+value_array[j]+"']").attr("selected",true);
+                                        }
+                                    tr +=
+                                        "<td><input type='button' value='修改'' class='change-item'></td><td><input type='button' value='删除' class='delete-item'></td></tr>";
+                                    $('#table').append(tr);
+                                });
+                                readOnly();
+                                delete_item();
+                                change_item();
                             }
-                            var tr = "<tr>";
-                            for (let j = 0; j < 5; j++) {
-                                tr += "<td><input type='text' value='" +
-                                    value_array[j] +
-                                    "'></td>";
-                            }
-                            for (let j = 5; j < 9; j++) {
-                                tr += "<td><select name='" + select_array[j] +
-                                    "' class='select-item'><option value='√'>" +
-                                    value_array[j] +
-                                    "</option><option value='x'>x</option></select></td>"
-                            }
-                            tr +=
-                                "<td><input type='button' value='修改'' class='change-item'></td><td><input type='button' value='删除' class='delete-item'></td></tr>";
-                            $('#table').append(tr);
                         });
-                        readOnly();
-                        delete_item();
-                        change_item();
                     }
                 });
+
                 readOnly();
                 delete_item();
                 change_item();
                 return false;
             });
+            $('#getData').trigger("click");
 
             function save_item(a) {
                 var currentRow = a.parent().parent();
@@ -268,12 +208,13 @@
 
                 });
             }
-            function delete_this(a){
+
+            function delete_this(a) {
                 var currentRow = a.parent().parent();
                 var data = currentRow.find("input")[0].value;
                 var post_fields = {};
                 post_fields['id'] = data;
-                $.post('admin.php?action=delete',post_fields,function(res){});
+                $.post('admin.php?action=delete', post_fields, function (res) {});
             }
         })
     </script>
